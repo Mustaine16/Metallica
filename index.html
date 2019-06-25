@@ -9,7 +9,15 @@
     <title>Metallica</title>
 </head>
 <body>
+    
+
     <div class="main">
+        <!-- Burger button -->
+        <div class="burger">
+            <div class="line 1"></div>
+            <div class="line 2"></div>
+            <div class="line 3"></div>
+        </div>
         <!-- HEADER CON LOGO Y 3 OPCIONES -->
         <header>
             <div class="logo">
@@ -24,15 +32,14 @@
          <!-- FIN HEADER CON LOGO Y 3 OPCIONES -->
          
         <!-- Fondo con Nav centrada en el borde superior -->
-        <div class="menu">
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Gallery</a>
-                <a href="#">History</a>
-                <a href="#">Become Member!</a>
-                <a href="#">All Within My Hands</a>
-            </nav>
-        </div>
+        <nav class="nav">
+            <a class="nav-links" href="#"><span>Home</span></a>
+            <a class="nav-links" href="#"><span>Gallery</span></a>
+            <a class="nav-links" href="#"><span>History</span></a>
+            <a class="nav-links" href="#"><span>Become Member!</span></a>
+            <a class="nav-links" href="#"><span>All Within My Hands</span></a>
+        </nav>    
+
         <div class="videoplayer">
                 <div class="box-subrayado">
                     <p>WATCH NOW!</p>
@@ -139,14 +146,14 @@
 
     <!-- MERCHANDASING -->
     <div class="skull-banner">
-        <a class="merch-button" href="https://www.metallica.com/store/">Enter</a>
+        <a class="merch-button" href="https://www.metallica.com/store/">Enter the Shop</a>
     </div>
     <div class="merch-background">
         <div class="merch-grid">
             <ul>
                 <li>
-                    <a href="#">
-                        <img src="img/tshirt1.jpg" alt="tshirt metallica">
+                    <a href="#" class="li-img">
+                        <img class="li-img" src="img/tshirt1.jpg" alt="tshirt metallica">
                     </a>
                     <span class="clothes-name">Shortest Straw Baseball Raglan</span>
                     <div class="price-sale">
@@ -263,5 +270,26 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        var docWidth = document.documentElement.offsetWidth;
+
+        [].forEach.call(
+          document.querySelectorAll('*'),
+          function(el) {
+            if (el.offsetWidth > docWidth) {
+              console.log(el);
+            }
+          }
+        );
+    
+        var burger = document.querySelector(".burger"),
+            nav = document.querySelector(".nav")
+
+        burger.addEventListener("click", () => {
+            nav.classList.toggle("nav-open")
+            
+        })
+    </script>
 </body>
 </html>

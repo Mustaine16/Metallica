@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
     color:white;
+    box-sizing: border-box;
 }
 body{
     display: flex;
@@ -21,7 +22,7 @@ body{
     background:url("img/home.jpg") no-repeat;
     background-position: center center;
     background-size: cover;
-    width: 100%;
+    max-width: 100%;
     height: 950px;
     display: flex;
     flex-direction: column;
@@ -45,14 +46,29 @@ body{
             width: 50%;         
         }
         .header-options a{
+            position: relative;
             text-decoration: none;
             padding: 5px;
             color:white;
             letter-spacing: 2px;
         }
-        .header-options a:hover{
-            border-bottom: 2px solid #eff2f5;
-        }
+
+            .header-options a::after{
+                content: "";
+                position: absolute;
+                bottom:0;
+                left: 0;
+                height: 3px;
+                width: 100%;
+                transform: scale(0,1);
+                transition: all .2s;
+                background: #eff2f5;
+            }
+            
+            .header-options a:hover::after{
+                transform: scale(1,1)
+            }
+
         .logo{
             width: 50%;
             top: 0;
@@ -68,23 +84,54 @@ body{
 
 /* BARRA DE NAVEGACION */
 
-    nav{
+    .nav{
         background: #0b0c0e;
         height: 60px;
-        width: 50%;
+        width: 70%;
         display: flex;
         justify-content: space-around;
+        align-items: center;
         margin: auto;
     }
-    nav a{
-        display:block;
+    
+
+    .nav-links{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: white;
         text-decoration: none;
         text-transform: uppercase;
-        padding: 20px;
+        height: 100%;
+        /* width: 50%; */
+        margin:0;
+        text-align: center;
     }
-    nav a:hover{
-        border-bottom: 4px solid rgb(189, 7, 7);
+
+        .nav-links span{
+            transition: all .2s
+        }
+
+    .nav-links:hover  span{
+        color:#b30606;
+    }
+
+
+    nav a::after{
+        content:"";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        width: 100%;
+        transform: scale(0,0);
+        background:#b30606;
+        transition: all .3s
+    }
+
+    .nav a:hover::after{
+        transform: scale(1,1)
     }
 
 /* VIDEO DE YOUTUBE */
@@ -184,13 +231,14 @@ body{
                     justify-content: space-around;
                 }
                     .buy-tickets a{
+                        text-align: center;
                         font-size: 18px;
                         margin: auto;
                         padding: 5px;
                         background-color: black;
                         text-decoration: none;
                         border: solid 2px #b40539;
-                        transition:background-color 0.2s ease;
+                        transition: 0.2s ease;
                     }
                     .buy-tickets a:hover{
                         background-color: #b40539;
@@ -213,6 +261,8 @@ body{
     }
         .merch-button{
             display: none;
+            text-align: center;
+            transition: all 0.2s
         }
 
     .merch-background{
@@ -234,6 +284,10 @@ body{
         ul{
             box-sizing: content-box;
         }
+
+        img{
+            width: 200px
+        }
         li{
             list-style: none;
             display: flex;
@@ -244,6 +298,14 @@ body{
             width: 300px;
             margin:15px auto;
         }
+
+        .li-img{
+            transition: all .2s
+        }
+       .li-img:hover{
+           /* background: red; */
+           opacity: 0.9;
+       }
         li a img{
             width: 300px;
             /* box-sizing: border-box; */
@@ -270,12 +332,16 @@ body{
             grid-column: 1 / 5;
             margin:auto;
             padding: 10px;
+            width: 20%;
+            text-align: center;
             background: #b40539;
             color:#eff2f5;
             text-decoration: none;
+            transition: all 0.15s
         }
         .merch-store-button:hover{
-            box-shadow: 2px 5px 50px #b40539
+            box-shadow: 2px 5px 50px #b40539;
+            background: #b30606
         }
 /* -------------------
 FIN BLOQUE MERCHANDASING
@@ -334,7 +400,67 @@ footer{
     MEDIA QUERIES 460PX
 -------------------------- */
 
-@media all and (max-width:810px){
+@media screen and (max-width:1440px){
+
+
+    .merch-grid{
+        width: 100%;
+    }
+    .merch-button{
+        display: none;
+        background: #f30808;
+        padding: 8px;
+        margin-bottom: 0;
+        text-decoration: none;
+        width: 20%;
+       position: absolute;
+       bottom: 0;
+       left:48%;
+    }
+    .merch-button:hover{
+        /* background: #b30606; */
+    }
+    .skull-banner{
+        position: relative;
+    }
+
+    .footer{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .miscellaneous {
+        text-align: center;
+        grid-area: 2/1/3/2;
+    }
+
+        .image {
+            grid-column: 1 / span 3;
+        }
+}
+
+
+@media screen and (max-width:1024px){
+    
+    .merch-background{
+        height: 900px;
+    }
+
+    li{
+        width: 90%;
+        margin: auto
+    }
+
+    li a, li a img{
+        width: 100%
+    }
+
+    .price-sale{
+        margin:10px 0
+    }
+}
+
+@media screen and (max-width:768px){
     .main{
         background-attachment: fixed;
         height: 700px;
@@ -343,7 +469,7 @@ footer{
         flex-direction: column;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: 100px;
+        margin-top:50px;
     }
         .header-options{
             margin: auto;
@@ -352,9 +478,60 @@ footer{
             margin-top: 2vh;
         }
 
-    nav{
-        display: none;
+   /* Burguer button */
+
+
+    html,body{
+     /* overflow-x: hidden; */
     }
+    
+    
+   .burger{
+        padding: 1em;
+        position: absolute;
+        top:10px;
+        left: 0;
+        z-index: 2;
+    }
+    .line{
+        width: 15px;
+        height: 2px;
+        margin-top:2px; 
+        background: #eff2f5;
+        border-radius: 50px
+    }
+
+/* Hacer que el navbar se transforma en un menu deslizable desd eal izquierda */
+    .nav{
+        /* display:none; */
+        position: absolute;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100vh;
+        width: 70vw;
+        top:0;
+        left:0;
+        transform: translateX(-210%);
+        margin: 0;
+        transition: all 0.7s;
+        z-index: 1;
+    }
+
+        .nav-links{
+            height: 10%;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .nav-open{
+            transform: translateX(0);
+            transition: all .5s
+        }
+
 
     .videoplayer{
         margin-bottom: 0px;
@@ -365,7 +542,7 @@ footer{
             width: 450px;
             margin:0px;
         }
-    
+        
     .tour-background{
         height: 900px;
     }
@@ -386,11 +563,11 @@ footer{
                 line-height: 18px;
             }
         /* Grid Derecho, Botones */
-        .buy-tickets{
+        /* .buy-tickets{
             flex-direction: row;
             flex-wrap:wrap;
             width: 150px;
-        }
+        } */
             .buy-tickets a{
                 font-size: 14px;
             }
@@ -403,17 +580,23 @@ footer{
         align-items: flex-end
     }
         .merch-button{
+            position: relative;
             display: inline-block;
-            background: #0b0c0e;
-            border:2px solid #f30808;
-            padding: 4px;
-            margin-bottom: 1px;
+            background: #f30808;
+            padding: 8px;
             text-decoration: none;
+            left: auto;
            
         }
+
+        .merch-button{
+            width: 20%;
+            margin-bottom: 10px;
+            border-radius: 100px;
+        }
+
         .merch-button:hover{
-            background: #f30808;
-            border-radius: 5px
+            box-shadow: -1px 0px 10px red
         }
 
     .merch-background{
@@ -421,12 +604,12 @@ footer{
     }
 
     footer{
-        height: 550px;
+        height: 570px;
     }
 
     .footer{
         grid-template-columns: 100%;
-        grid-template-rows: 2fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
     }
         .image{
             grid-area: 1/ 1/ 2/ 2;
@@ -437,45 +620,30 @@ footer{
                 margin: auto;
             }
         .social{
-            grid-area: 2/1/3/2
-        }
-}   
+            grid-area: 3/1/4/2
+        } 
+}
 
-@media (max-width:1024px){
+@media screen and (max-width:480px){
+
+    .videoplayer{
+        display: none
+    }
+    
+   /* Arreglar el desborde de los botones de compra ordenandolos en forma de columna */
+
+   .buy-tickets{
+        flex-direction: column
+    }   
+        
+    /* Merch */
+    
     .merch-background{
-        display: none;
+        display: none
     }
+
     .merch-button{
-        display: block;
-        background: #0b0c0e;
-        border:2px solid #f30808;
-        padding: 8px;
-        margin-bottom: 1px;
-        text-decoration: none;
-        width: 4%;
-       position: absolute;
-       bottom: 0;
-       left:48%;
-    }
-    .merch-button:hover{
-        background: #f30808;
-        border-radius: 5px
-    }
-    .skull-banner{
-        position: relative;
+        width: 50%
     }
 
-    .footer{
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-    }
-
-    .miscellaneous {
-        text-align: center;
-        grid-area: 2/1/3/2;
-    }
-
-        .image {
-            grid-column: 1 / span 3;
-        }
 }
